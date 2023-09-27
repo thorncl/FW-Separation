@@ -1,0 +1,36 @@
+Echo Planar Imaging:
+https://mriquestions.com/echo-planar-imaging.html
+https://www.youtube.com/watch?v=prbnJ4OExrg
+https://www.cis.rit.edu/htbooks/mri/chap-10/chap-10.htm#:~:text=Gradient%20Recalled%20Echo,in%20the%20frequency%20domain%20spectrum.
+https://www.youtube.com/watch?v=vapJRr6gAds&t=13s
+https://cni.stanford.edu/wiki/MR_Signal_Equations
+https://mrsrl.stanford.edu/~brian/bloch/#:~:text=Bloch%20simulation%20is%20the%20most,is%20created%20during%20the%20tutorial.
+https://www.drcmr.dk/BlochSimulator/
+https://cds.ismrm.org/protected/16MProceedings/PDFfiles/7095.html
+https://mriquestions.com/what-is-fsetse.html
+http://xrayphysics.com/spatial.html#slice
+http://xrayphysics.com/sequences.html
+https://github.com/bragis/MatlabDESS/tree/master
+https://inst.eecs.berkeley.edu/~ee225e/sp13/hw/hw7.pdf
+https://pulseq.github.io/
+
+- K-space -> frequency domain
+- RF signal containing echos
+- RF signal decomposed into frequency and phase components
+- Frequency encoding on x-axis, phase encoding on y-axis
+- Traversal of k-space in zig-zag pattern
+- EPI refers to the process by which rapid gradient-echo or spin-echo sequences undergo k-space traversal in one or a small number of excitations
+    - Single shot vs multi shot EPI
+- Refocus and acquire multiple lines of K-space using multiple echos
+- Oscillating gradient on readout or Gx axis to encode multiple echos with single TR (repetition time - length of time between RF pulses)
+- TE is echo time - length of time between centre of RF pulse to centre of echo
+    - Multiple lines with multiple echos (number recovered is ETL or echo train length)
+    - Reduces scan time by factor of ETL
+    - Encode entire k-space with one RF excitation (single shot EPI) -> Scan Time = TR X NEX (number of excitations) ETL = Ny (number of points in y dimension)
+    - Can be done faster with multiple excitations (multi shot EPI) -> Scan Time = TR x Ny / ETL x NEX
+        - One segment of k-space per one RF pulse
+- Data encoded with bipolar gradient
+    - Flyback EPI - readout ONLY on positive lobes
+    - Symmetric EPI - readout on positive and negative lobes
+- Tesp - Echo Spacing
+
