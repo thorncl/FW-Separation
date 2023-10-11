@@ -13,6 +13,12 @@ http://xrayphysics.com/sequences.html
 https://github.com/bragis/MatlabDESS/tree/master
 https://inst.eecs.berkeley.edu/~ee225e/sp13/hw/hw7.pdf
 https://pulseq.github.io/
+https://www.youtube.com/watch?v=2ELpZhyJm4k&t=5s
+https://www.youtube.com/watch?v=W65OAi1xdKw
+https://www.youtube.com/watch?v=ZwIFbQJ39ao
+https://mriquestions.com/k-space-trajectories.html
+https://radiologykey.com/echo-planar-imaging-3/
+https://k-space.app/
 
 - K-space -> frequency domain
 - RF signal containing echos
