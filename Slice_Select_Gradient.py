@@ -2,13 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
-
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 from PIL import Image
 
-# Define the grid of points where you want to visualize the vector field
+
 x = np.linspace(-5, 5, 15)
 y = np.linspace(-5, 5, 20)
 X, Y = np.meshgrid(x, y)
@@ -33,7 +29,8 @@ def update(frame):
     U = np.where(condition, rotating_U, non_rotating_U)
     V = np.where(condition, rotating_V, non_rotating_V)
 
-    ax.quiver(X, Y, U, V, color='b', angles='xy', scale_units='xy', scale=10)
+    ax.quiver(X[condition], Y[condition], U[condition], V[condition], color='b', angles='xy', scale_units='xy', scale=10)
+    ax.quiver(X[~condition], Y[~condition], U[~condition], V[~condition], color='gray', angles='xy', scale_units='xy', scale=10)
     ax.set_xlabel('Z-axis')
     ax.set_ylabel('Y-axis')
     ax.set_title('Slice Excitation and Selection')
@@ -45,7 +42,7 @@ def update(frame):
     ax.set_xticks([])
     ax.set_yticks([])
 
-    # Save the current frame as an image
+
     fig.canvas.draw()
     image = np.frombuffer(fig.canvas.tostring_rgb(), dtype='uint8')
     image = image.reshape(fig.canvas.get_width_height()[::-1] + (3,))
@@ -53,6 +50,6 @@ def update(frame):
 
 ani = FuncAnimation(fig, update, frames=60, repeat=True, blit=False, interval=50)
 
-# Save the frames as a GIF
+
 ani.save('slice_select_gradient.gif', writer='pillow', fps=20)
 HTML(ani.to_jshtml())
