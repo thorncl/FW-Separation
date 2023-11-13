@@ -1,29 +1,25 @@
 import numpy as np
 import transforms as tr
+import reconstruct as re
 from kspace import params, kspace_data
+import matplotlib.pyplot as plt
 
 def main():
 
-    # kx_params = kspace_params(1.0,2,128,0.0,0,np.sinc)
-    # ky_params = kspace_params(1.0,2,128,0.0,0,np.sinc)
+    kx_params = params(1.0,2.0,128.0,0.3,2.0,np.sinc)
+    ky_params = params(1.0,2.0,128.0,0,0,np.sinc)
 
-    # shifted_data_kx = kspace(kx_params,ky_params)
-    # shifted_data = shifted_data_kx.data
+    datas = kspace_data(kx_params,ky_params)
+    data = datas.data
 
-    kx_params = params(1.0,2,128,0.3,2,np.sinc)
-    ky_params = params(1.0,2,128,0.0,0,np.sinc)
+    ffts = tr.inverse_2D(data)
 
-    shifted_data_kx = kspace_data(kx_params,ky_params)
-    shifted_data1 = shifted_data_kx.data
+    re.save_data(data)
 
-    kx_params = params(1.0,2,128,0.3,4,np.sinc)
-    ky_params = params(1.0,2,128,0,0,np.sinc)
+    shift = re.get_shift(data,2)
+    recon = re.reconstruct(data,shift,128)
 
-    shifted_data_kx = kspace_data(kx_params,ky_params)
-    shifted_data2 = shifted_data_kx.data
+    return data, ffts, shift, recon
 
-    fft_shifted_data = tr.inverse_2D(shifted_data2)
-
-    #save_data(shifted_data)
-
-    return shifted_data1, shifted_data2
+if __name__ == '__main__':
+    data, fft, shift, recon = main()

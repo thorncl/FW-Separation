@@ -1,13 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import os
 
-def plot_kspace(data : np.ndarray):
+def plot_kspace(data : np.ndarray) -> None:
     plt.figure()
     plt.imshow(data, cmap='gray')
     plt.colorbar()
 
-def plot_transform(data : np.ndarray):
+def plot_transform(data : np.ndarray) -> None:
     plt.figure()
     plt.imshow(np.abs(data),cmap='gray')
     plt.colorbar()
@@ -22,15 +21,11 @@ def inverse_2D(data : np.ndarray) -> np.ndarray:
 
 def inverse_2D_1D(data : np.ndarray) -> np.ndarray:
 
-    return kspace_transform(np.fft.ifftshift, np.fft.ifft, np.fft.ifft, np.fft.fftshift, True)
+    return kspace_transform(data, np.fft.ifftshift, np.fft.ifft, np.fft.ifft, np.fft.fftshift, True)
 
 def forward_2D_1D(data : np.ndarray) -> np.ndarray:
 
-    return kspace_transform(np.fft.fftshift, np.fft.fft, np.fft.fft, np.fft.ifftshift, True)
-
-def save_data(data : np.ndarray, file_name : str = "sample_data"):
-
-    np.save(os.getcwd() + '\\' + file_name, data)
+    return kspace_transform(data, np.fft.fftshift, np.fft.fft, np.fft.fft, np.fft.ifftshift, True)
 
 def kspace_transform(data : np.ndarray, func1, func2, func3, func4, flag_1D : bool) -> np.ndarray:
 
