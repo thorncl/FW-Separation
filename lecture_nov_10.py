@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import reconstruct as re
+import transforms as tr
 
 def import_data(file_path):
     data = np.load(file_path)
@@ -33,7 +34,7 @@ def imshow(i):
 
 def main():
 
-    data, fft = import_data("ClareArray2.npy")
+    data, fft = import_data("ClareArray.npy")
     return data, fft
 
 if __name__ == '__main__':
@@ -41,8 +42,23 @@ if __name__ == '__main__':
     data, fft = main()
     fft_even, fft_odd = build_even_odd(data)
     shift = re.get_shift(data,2)
+    print(shift)
     recon = recon(fft_even,fft_odd,shift)
 
     plt.figure()
-    imshow(recon)
+    tr.plot_data(recon)
     
+    # def equation(shift: float) -> callable:
+    #     return np.arcsin(np.pi*shift*fc/width) - np.pi*shift/width
+    
+    # def newton(equation: callable, derivative: callable, init: float = 0.1, tolerance: float = 1e-6, max_iter: int = 1000) -> float:
+    #     shift = init
+    #     for i in range(max_iter):
+    #         shift = shift - equation(shift) / derivative(shift)
+    #         if np.abs(equation(shift)) < tolerance:
+    #             return shift
+
+    # def derivative(shift) -> callable:
+    #     return (np.pi * fc) / (width * np.sqrt(1 - (np.pi * shift * fc / width)**2))
+
+    #return newton(equation, derivative)

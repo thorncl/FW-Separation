@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def main():
 
-    kx_params = params(1.0,2.0,128.0,0.3,2.0,np.sinc)
+    kx_params = params(1.0,2.0,128.0,0.9,2.0,np.sinc)
     ky_params = params(1.0,2.0,128.0,0,0,np.sinc)
 
     datas = kspace_data(kx_params,ky_params)
@@ -16,7 +16,7 @@ def main():
 
     re.save_data(data)
 
-    shift = re.get_shift(data,2)
+    shift = re.get_shift(data)
     recon = re.reconstruct(data,shift,128)
 
     return data, ffts, shift, recon

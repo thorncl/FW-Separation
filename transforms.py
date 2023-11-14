@@ -1,14 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_kspace(data : np.ndarray) -> None:
+def plot_data(data : np.ndarray) -> None:
     plt.figure()
-    plt.imshow(data, cmap='gray')
-    plt.colorbar()
-
-def plot_transform(data : np.ndarray) -> None:
-    plt.figure()
-    plt.imshow(np.abs(data),cmap='gray')
+    plt.imshow(np.concatenate((np.real(data),np.imag(data)),axis=1))
     plt.colorbar()
 
 def forward_2D(data : np.ndarray) -> np.ndarray:
