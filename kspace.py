@@ -1,15 +1,17 @@
 from dataclasses import dataclass
+import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 @dataclass(kw_only = False)
 class params():
 
-    scale: float 
+    scale: float
     width: float
     offset: float
     shift: float
     row: float
-    func: callable 
+    func: callable
 
 @dataclass(kw_only = False)
 class kspace_data():
@@ -27,7 +29,7 @@ class kspace_data():
     def __build_mesh(self) -> np.ndarray:
 
         return np.meshgrid(np.arange(self.size),np.arange(self.size))
-    
+
     def __build_param_dict(self) -> np.ndarray:
 
         return {"k_xy_params": [self.kx_params, self.ky_params], "k_xy": [self.ky, self.kx]}
@@ -54,3 +56,17 @@ class kspace_data():
     def get_kspace(self) -> np.ndarray:
 
         return self.get_data(0)*self.get_data(1)
+    
+def save_data(data : np.ndarray, file_name : str = "ClareArray") -> None:
+
+    np.save(os.getcwd() + '\\' + file_name, data)
+
+def load_data(file_name : str) -> None:
+
+    np.load(file_name)
+
+def plot_data(data : np.ndarray) -> None:
+    
+    plt.figure()
+    plt.imshow(np.concatenate((np.real(data),np.imag(data)),axis=1))
+    plt.colorbar()

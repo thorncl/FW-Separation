@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import reconstruct as re
 import transforms as tr
+from kspace import *
 
 def import_data(file_path):
     data = np.load(file_path)
@@ -45,8 +46,7 @@ if __name__ == '__main__':
     print(shift)
     recon = recon(fft_even,fft_odd,shift)
 
-    plt.figure()
-    tr.plot_data(recon)
+    plot_data(recon)
     
     # def equation(shift: float) -> callable:
     #     return np.arcsin(np.pi*shift*fc/width) - np.pi*shift/width
