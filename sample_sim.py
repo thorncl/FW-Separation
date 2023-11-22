@@ -15,7 +15,7 @@ def main():
 
     save_data(data)
 
-    shift = re.get_shift(data)
+    shift = re.get_odd_even_shift(data)
     recon = re.reconstruct(data,shift,128)
 
     return data, ffts, shift, recon

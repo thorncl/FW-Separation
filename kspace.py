@@ -32,26 +32,24 @@ class kspace_data():
 
     def __build_param_dict(self) -> np.ndarray:
 
-        return {"k_xy_params": [self.kx_params, self.ky_params], "k_xy": [self.ky, self.kx]}
+        return {"k_xy_params": [self.kx_params, self.ky_params], 
+                "k_xy": [self.ky, self.kx]}
     
     def __get_param(self, ax: int) -> np.ndarray:
 
         return self.params[list(self.params.keys())[0]][ax]
-    
-    def __get_kx_ky(self, ax: int) -> np.ndarray:
-
-        return self.params[list(self.params.keys())[1]][ax], self.params[list(self.params.keys())[1]][~ax]
  
     def shift_term(self, data: np.ndarray, ax: int) -> np.ndarray:
 
         param = self.__get_param(ax)
-        return np.where(data % param.row == 0, param.shift, -param.shift) if np.ceil(param.shift) else 0
+        return np.where(data % param.row == 0, 
+                        param.shift, -param.shift) if param.shift != 0 else 0
 
     def get_data(self, ax: int) -> np.ndarray:
 
-        k_ax, k_not_ax = self.__get_kx_ky(ax)
         param = self.__get_param(ax)
-        return param.func((param.scale*(k_ax - param.offset + self.shift_term(k_not_ax, ax))/param.width))
+        return param.func((param.scale*(self.params['k_xy'][ax] - param.offset 
+                                        + self.shift_term(self.params['k_xy'][~ax], ax))/param.width))
 
     def get_kspace(self) -> np.ndarray:
 

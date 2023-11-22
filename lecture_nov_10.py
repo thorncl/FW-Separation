@@ -35,14 +35,16 @@ def imshow(i):
 
 def main():
 
-    data, fft = import_data("ClareArray.npy")
-    return data, fft
+    data, ifft = import_data("ClareArray.npy")
+    data_ns, ifft_ns = import_data("ClareArray_ns.npy")
+    return data, ifft, data_ns, ifft_ns
 
 if __name__ == '__main__':
     
-    data, fft = main()
+    data, ifft, data_ns, ifft_ns = main()
     fft_even, fft_odd = build_even_odd(data)
-    shift = re.get_shift(data,2)
+
+    shift = re.get_odd_even_shift(data,2)
     print(shift)
     recon = recon(fft_even,fft_odd,shift)
 
