@@ -1,24 +1,24 @@
 import numpy as np
-import transforms as tr
 import reconstruct as re
 from kspace import *
 
 def main():
 
-    kx_params = params(1.0,2.0,128.0,0.2,2.0,np.sinc)
-    ky_params = params(1.0,2.0,128.0,0,0,np.sinc)
+    rand_delays = np.random.randint(-10,10,(256,1))
 
-    datas = kspace_data(kx_params,ky_params)
-    data = datas.data
+    kspace_params = params(1.0,2.0,128.0,rand_delays,2.0,np.sinc)
 
-    ffts = tr.inverse_2d(data)
+    kspace = kspace_data(kspace_params)
 
-    save_data(data)
+    recon = re.reconstruct(kspace)
 
-    shift = re.get_odd_even_shift(data)
-    recon = re.reconstruct(data,shift,128)
+    plot_data(kspace.img)
+    plt.title('Corrupted Image')
 
-    return data, ffts, shift, recon
+    plot_data(recon.corrected_img)
+    plt.title('Corrected Image')
+
+    return recon
 
 if __name__ == '__main__':
-    data, fft, shift, recon = main()
+    recon = main()

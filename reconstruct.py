@@ -1,37 +1,41 @@
 import numpy as np
 from scipy import optimize
+from dataclasses import dataclass
+from kspace import *
 import transforms as tr
 
-def get_odd_even_shift(data : np.ndarray, width : int = 2, init : float = 0.1,
-              tol : float = 1e-6,
-              max_iter : int = 1000) -> float:
+@dataclass(kw_only = False)
+class reconstruct():
 
-    fc = data[128,128]
+    data: kspace_data
 
-    f = lambda shift: np.arcsin(np.pi * shift * fc / width) - np.pi * shift / width
-    f_prime = lambda shift: (np.pi * fc) / (width * np.sqrt(1 - (np.pi * shift * fc / width)**2))
+    def __post_init__(self):
 
-    return optimize.newton(f, init, fprime = f_prime, tol = tol, maxiter = max_iter)
+        ifft_calib = tr.inverse_1d(self.data.calib, 1)
+        ifft_calib_shftd = np.roll(ifft_calib, shift = 1, axis = 1)
 
-def reconstruct(data : np.ndarray, shift : float,
-                offset : int = 128) -> np.ndarray:
+        self.conj = self.complex_conj(ifft_calib_shftd)
+        self.slope = self.complex_slope(ifft_calib, self.conj)
+        self.corrected_img = self.reconstruct()
 
-    fft_even, fft_odd = build_odd_even_arrays(data)
-    fft_even, fft_odd = even_odd_delay_correction([fft_even, fft_odd], shift, offset)
+    def complex_conj(self, ifft_calib_shftd) -> np.ndarray:
 
-    return fft_even + fft_odd
+        return np.conj(ifft_calib_shftd)
+        
+    def complex_slope(self, ifft : np.ndarray, conj : np.ndarray) -> np.ndarray:
 
-def build_odd_even_arrays(data: np.ndarray) -> np.ndarray:
+        return ifft * conj
+        
+    def correction(self, complex_slope : np.ndarray) -> np.ndarray:
 
-    even, odd = np.zeros_like(data), np.zeros_like(data)
-    even[:, 0::2], odd[:, 1::2] = data[:, 0::2], data[:, 1::2]
-    return tr.inverse_2d(even), tr.inverse_2d(odd)
+        row_sum = np.sum(complex_slope, 1)
+        row_correction = np.arctan2(np.imag(row_sum),np.real(row_sum))
 
-def even_odd_delay_correction(ffts : np.ndarray, shift : float,
-                     offset : int) -> np.ndarray:
+        return np.exp(-1j*(self.data.param.kxy[0]-128)*(np.transpose(row_correction*np.ones((256,256)))))
 
-    size = ffts[0].shape[0]
-    x, y = np.meshgrid(np.arange(size),np.arange(size))
-    ffts[0][x,y] *= np.exp((-1j*2*np.pi*(x-offset)*-shift)/size)
-    ffts[1][x,y] *= np.exp((1j*2*np.pi*(x-offset)*-shift)/size)
-    return ffts
+    def reconstruct(self) -> np.ndarray:
+
+        ifft_img = tr.inverse_1d(self.data.data, 1)
+        corrected_img = ifft_img * self.correction(self.slope)
+
+        return tr.inverse_1d(corrected_img, 0)

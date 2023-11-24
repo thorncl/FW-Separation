@@ -2,58 +2,61 @@ from dataclasses import dataclass
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import transforms as tr
 
 @dataclass(kw_only = False)
 class params():
-
-    scale: float
-    width: float
-    offset: float
-    shift: float
-    row: float
+   
+    scaling_factor: float
+    voxel_width_factor: float
+    pixel_offset: float
+    delay: float | np.ndarray
+    modulo: float
     func: callable
-
-@dataclass(kw_only = False)
-class kspace_data():
-
-    kx_params: params
-    ky_params: params
-    size: int = 256
+    image_size: int = 256
 
     def __post_init__(self):
-        
-        self.kx,self.ky = self.__build_mesh()
-        self.params = self.__build_param_dict()
-        self.data = self.get_kspace()
+
+        ky, kx = self.__build_mesh()
+        self.kxy = [ky, kx]
 
     def __build_mesh(self) -> np.ndarray:
 
-        return np.meshgrid(np.arange(self.size),np.arange(self.size))
-
-    def __build_param_dict(self) -> np.ndarray:
-
-        return {"k_xy_params": [self.kx_params, self.ky_params], 
-                "k_xy": [self.ky, self.kx]}
+        return np.meshgrid(np.arange(self.image_size), np.arange(self.image_size))
     
-    def __get_param(self, ax: int) -> np.ndarray:
+@dataclass(kw_only = False)
+class kspace_data():
 
-        return self.params[list(self.params.keys())[0]][ax]
- 
-    def shift_term(self, data: np.ndarray, ax: int) -> np.ndarray:
+    param: params
+    
+    def __post_init__(self):
+        
+        self.data = self.get_kspace(False, True)
+        self.calib = self.get_kspace(False, False)
+        self.img = tr.inverse_2d(self.data)
 
-        param = self.__get_param(ax)
-        return np.where(data % param.row == 0, 
-                        param.shift, -param.shift) if param.shift != 0 else 0
+    def constant_delay(self) -> np.ndarray:
 
-    def get_data(self, ax: int) -> np.ndarray:
+        return np.where(self.param.kxy[1] % self.param.modulo == 0, 
+                        self.param.delay, -self.param.delay)
+    
+    def random_delay(self) -> np.ndarray:
 
-        param = self.__get_param(ax)
-        return param.func((param.scale*(self.params['k_xy'][ax] - param.offset 
-                                        + self.shift_term(self.params['k_xy'][~ax], ax))/param.width))
+        return self.param.delay
+    
+    def get_delay(self) -> np.ndarray:
 
-    def get_kspace(self) -> np.ndarray:
+        return self.constant_delay() if type(self.param.delay) is float else self.random_delay()
 
-        return self.get_data(0)*self.get_data(1)
+    def compute(self, ax : int, delay : bool = True, no_calib : bool = True) -> np.ndarray:
+
+        return self.param.func((no_calib*self.param.scaling_factor*(self.param.kxy[ax] - 
+                                                                    self.param.pixel_offset + delay*self.get_delay()) / self.param.voxel_width_factor))
+        
+    def get_kspace(self, delay : bool = True, no_calib : bool = True) -> np.ndarray:
+
+        return self.compute(0)*self.compute(1, delay, no_calib)
+
     
 def save_data(data : np.ndarray, file_name : str = "ClareArray") -> None:
 
@@ -66,5 +69,5 @@ def load_data(file_name : str) -> None:
 def plot_data(data : np.ndarray) -> None:
     
     plt.figure()
-    plt.imshow(np.concatenate((np.real(data),np.imag(data)),axis=1))
+    plt.imshow(np.concatenate((np.real(data),np.imag(data)), axis = 1), cmap = 'gray')
     plt.colorbar()
