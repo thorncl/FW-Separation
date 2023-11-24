@@ -4,11 +4,9 @@ from kspace import *
 
 def main():
 
-    rand_delays = np.random.randint(-10,10,(256,1))
+    delays = np.random.uniform(-0.8,0.8,(256,1))
 
-    kspace_params = params(1.0,2.0,128.0,rand_delays,2.0,np.sinc)
-
-    kspace = kspace_data(kspace_params)
+    kspace = kspace_data(params(1.0,2.0,128.0,delays,2.0,np.sinc,256,False))
 
     recon = re.reconstruct(kspace)
 
@@ -18,7 +16,6 @@ def main():
     plot_data(recon.corrected_img)
     plt.title('Corrected Image')
 
-    return recon
-
 if __name__ == '__main__':
-    recon = main()
+
+    main()

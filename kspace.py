@@ -7,13 +7,14 @@ import transforms as tr
 @dataclass(kw_only = False)
 class params():
    
-    scaling_factor: float
-    voxel_width_factor: float
-    pixel_offset: float
-    delay: float | np.ndarray
-    modulo: float
-    func: callable
-    image_size: int = 256
+    scaling_factor : float
+    voxel_width_factor : float
+    pixel_offset : float
+    delay : float | np.ndarray
+    modulo : float
+    func : callable
+    image_size : int = 256
+    row_dependent : bool = False
 
     def __post_init__(self):
 
@@ -46,7 +47,13 @@ class kspace_data():
     
     def get_delay(self) -> np.ndarray:
 
-        return self.constant_delay() if type(self.param.delay) is float else self.random_delay()
+        if self.param.row_dependent:
+            return self.param.delay*self.param.kxy[1]
+        
+        if type(self.param.delay) is float:
+            return self.constant_delay()
+        else:
+            return self.random_delay()
 
     def compute(self, ax : int, delay : bool = True, no_calib : bool = True) -> np.ndarray:
 
