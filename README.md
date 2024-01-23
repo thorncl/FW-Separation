@@ -85,7 +85,7 @@ kspace1 = fat_kspace1 + water_kspace1
 kspace2 = fat_kspace2 + water_kspace2
 ```
 
-<font size="6"><b>Plotting the Corrupted Image Data</b></font>
+## Plotting the Corrupted Image Data
 
 - The sample has been imaged in the water's rotating frame of reference, hence the introduction of some 2D delay to the fat component of the signal which needs to be resolved.
 
@@ -153,7 +153,7 @@ plot_fat_water(inverse_fft(fat_kspace2), inverse_fft(water_kspace2), inverse_fft
     
 
 
-<font size="6"><b>Performing the Fat/Water Separation</b></font>
+## Performing the Fat-Water Separation
 
 <b>Formulation</b>:
 
@@ -252,30 +252,38 @@ $$
 Thus, the set of linear equations may be written in matrix format per the following. It is important to note that $x_r$, $x_i$, $y_r$, and $y_i$ are known values as they represent the real and imaginary components of each point in K-Space 1 and K-Space 2. As such, the set of equations must be  re-arranged such that we may resolve the water and fat components.
 
 <br/>
-```math
-  \begin{bmatrix}x_r\\x_i \\y_r\\y_i\end{bmatrix}
-```
+
+``` math
+  \begin{bmatrix}
+  x_r\\
+  x_i \\
+  y_r\\
+  y_i
+  \end{bmatrix}
   =
+  
   \begin{bmatrix}
   1 & 0 & a & -c \\
   0 & 1 & c & a \\
   1 & 0 & b & -d \\
   0 & 1 & d & b
   \end{bmatrix}
+  
   \begin{bmatrix}
   w_r \\
   w_i \\
   f_r \\
   f_i
   \end{bmatrix}
-```
+``` 
+
 <br/>
 
 The system of equations may therefore be re-arranged per the following:
 
 <br/>
 
-$$
+``` math
   \begin{bmatrix}
   w_r \\
   w_i \\
@@ -295,7 +303,7 @@ $$
   y_r \\
   y_i
   \end{bmatrix}
-$$
+``` 
 
 <br/>
 
@@ -380,7 +388,7 @@ $$
   \end{bmatrix}
 $$
 
-<font size="6"><b>Plotting the Reconstructed Images</b></font>
+## Plotting the Reconstructed Images
 
 
 ```python
@@ -393,7 +401,7 @@ plot_fat_water(inverse_fft(fat_kspace_reconstructed), inverse_fft(water_kspace_r
     
 
 
-<font size="6"><b>Limitations</b></font>
+## Limitations
 
 The approach identified herein assumes that the composition of the sample is entirely fat and water, which may not always be representative of real-world data. 
 
@@ -404,3 +412,6 @@ Furthermore, there are numerous image artifacts that may be induced via EPI. For
 Additionally, magnetic susceptibility differences between various tissues may induce some additional gradient during imaging resulting in geometric distortion. 
 
 These considerations are important in the context of real-world imaging; however, they are not accounted for in this study.
+
+
+## Echo Planar Imaging Simulator
