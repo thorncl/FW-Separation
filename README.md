@@ -10,14 +10,14 @@ In a research context, the ability to differentiate these signals is instrumenta
 
 In this project, we aim to perform fat/water separation by collecting two complementary EPI sequences while assuming that we're spinning in the water's rotating frame of reference.
 
-<font size="6"><b>Libraries</b></font>
+## Libraries
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-<font size="6"><b>Generating the K-Space Data</b></font>
+## Generating K-Space Data
 
 - A simple case is assumed herein; data is obtained from imaging a slice of the sample containing fat and water *only*.
 
