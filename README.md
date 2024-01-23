@@ -252,27 +252,27 @@ $$
 Thus, the set of linear equations may be written in matrix format per the following. It is important to note that $x_r$, $x_i$, $y_r$, and $y_i$ are known values as they represent the real and imaginary components of each point in K-Space 1 and K-Space 2. As such, the set of equations must be  re-arranged such that we may resolve the water and fat components.
 
 <br/>
-$
+```math
   \begin{bmatrix}
-  x_r \\\
-  x_i \\\
-  y_r \\\
+  x_r \\
+  x_i \\
+  y_r \\
   y_i
   \end{bmatrix}
   =
   \begin{bmatrix}
-  1 & 0 & a & -c \\\
-  0 & 1 & c & a \\\
-  1 & 0 & b & -d \\\
+  1 & 0 & a & -c \\
+  0 & 1 & c & a \\
+  1 & 0 & b & -d \\
   0 & 1 & d & b
   \end{bmatrix}
   \begin{bmatrix}
-  w_r \\\
-  w_i \\\
-  f_r \\\
+  w_r \\
+  w_i \\
+  f_r \\
   f_i
   \end{bmatrix}
-$
+```
 <br/>
 
 The system of equations may therefore be re-arranged per the following:
