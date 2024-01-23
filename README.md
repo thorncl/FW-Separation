@@ -1,11 +1,5 @@
 # Fat Water Separation
 
-# Authors:
-<font size="4">Amirhossein Sabour</font>\
-<font size="4">Clare Thornton</font>\
-<font size="4">Ahila Ramesh Rajamani</font>\
-<font size="4">Esteban Pondicq Cassou</font>
-
 <font size="6"><b>Introduction</b></font>
 
 In the domain of Magnetic Resonance Imaging (MRI), the accurate separation of fat and water signals is critically important, primarily due to the distinct chemical shifts they exhibit. This distinction is critical as it directly influences image clarity and diagnostic precision.
