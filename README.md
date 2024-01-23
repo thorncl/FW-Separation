@@ -1,4 +1,4 @@
-<font size="12"><b>Team 2: Fat/Water Separation</b></font>
+<font size="14"><b>Team 2: Fat/Water Separation</b></font>
 
 
 <font size="6"><b>Authors:</b></font>
