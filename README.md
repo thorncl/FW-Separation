@@ -68,7 +68,8 @@ def create_kspace_data(range: range, tx: float) -> np.ndarray:
             phi_idx = (-1)*t*const
             fat_complex_exp = np.exp(1j*phi_idx, dtype=complex)
             water_kspace[ky,kx] = np.sinc((kx-128)/water_scalar)*np.sinc((ky-128)/water_scalar)
-            fat_kspace[ky,kx]=(np.sinc((kx-128)/fat_scalar)*np.sinc((ky-128)/fat_scalar) - scaling_factor*np.sinc((kx-128)/water_scalar)*np.sinc((ky-128)/water_scalar))*fat_complex_exp
+            fat_kspace[ky,kx]=(np.sinc((kx-128)/fat_scalar)*np.sinc((ky-128)/fat_scalar) -
+scaling_factor*np.sinc((kx-128)/water_scalar)*np.sinc((ky-128)/water_scalar))*fat_complex_exp
             phi[ky,kx] = phi_idx
             t += tx
 
