@@ -205,6 +205,7 @@ $$
   sin(\phi_2) \rightarrow{} d
 $$
 
+<br/>
 
 Isolating for the real and imaginary components of each K-Space:
 
