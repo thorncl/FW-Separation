@@ -36,7 +36,6 @@ import matplotlib.pyplot as plt
 - `tx` - a division of time with units `s` dependent on imaging speed.
 - `phi` - phase associated with the fat component of the signal in water's rotating frame of reference.
 
-
 ```python
 image_size = 256
 fat_scalar = 2
