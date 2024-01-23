@@ -12,9 +12,8 @@ class params():
     pixel_offset : float
     delay : float | np.ndarray
     modulo : float
-    func : callable
-    image_size : int = 256
     row_dependent : bool = False
+    image_size : int = 256
 
     def __post_init__(self):
 
@@ -57,7 +56,7 @@ class kspace_data():
 
     def compute(self, ax : int, delay : bool = True, no_calib : bool = True) -> np.ndarray:
 
-        return self.param.func((no_calib*self.param.scaling_factor*(self.param.kxy[ax] - 
+        return np.sinc((no_calib*self.param.scaling_factor*(self.param.kxy[ax] - 
                                                                     self.param.pixel_offset + delay*self.get_delay()) / self.param.voxel_width_factor))
         
     def get_kspace(self, delay : bool = True, no_calib : bool = True) -> np.ndarray:
