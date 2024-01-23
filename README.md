@@ -190,9 +190,9 @@ It is noted that since the magnetic properties of fat and water are known, $\phi
 <br/>
 
 $$
-  cos(\phi_1) \rightarrow{} a \\
-  cos(\phi_2) \rightarrow{} b \\
-  sin(\phi_1) \rightarrow{} c \\
+  cos(\phi_1) \rightarrow{} a \
+  cos(\phi_2) \rightarrow{} b \
+  sin(\phi_1) \rightarrow{} c \
   sin(\phi_2) \rightarrow{} d
 $$
 
