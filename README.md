@@ -8,7 +8,7 @@ Precise fat/water separation is, therefore, a cornerstone in enhancing the diagn
 
 In a research context, the ability to differentiate these signals is instrumental in advancing our understanding of various medical conditions and refining MRI techniques. Thus, the development and refinement of methods to address the inherent chemical shift in MRI not only enhances image quality but also significantly contribute to the accuracy and efficacy of medical diagnostics.
 
-In this project, we aim to perform fat/water separation by collecting two complementary EPI sequences while assuming that we're spinning in the water's rotating frame of reference.
+A separation and recovery of fat/water components is conducted herein by collecting two complementary EPI sequences while assuming that imaging is occuring in the water's rotating frame of reference.
 
 ## Libraries
 
