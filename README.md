@@ -1,7 +1,7 @@
 # Fat Water Separation
 
 
-<font size="10">Amirhossein Sabour</font>\
+<font size="10">Authors</font>\
 <font size="4">Amirhossein Sabour</font>\
 <font size="4">Clare Thornton</font>\
 <font size="4">Ahila Ramesh Rajamani</font>\
