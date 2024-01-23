@@ -168,22 +168,15 @@ plot_fat_water(inverse_fft(fat_kspace2), inverse_fft(water_kspace2), inverse_fft
 - $\phi_1$ - phase associated with the fat in the water's rotating frame of reference in K-Space 1
 
 - $\phi_2$ - phase associated with the fat in the water's rotating frame of reference in K-Space 2
-
 <br />
-
 The equations for each K-Space may be written as:
-
 <br/>
-
 $$
   \mathbf{KSpace_1}: \ \ \ x_r + jx_i = w_r + jw_i + (cos(\phi_1) + jsin(\phi_1))(f_r + jf_i)\\
 $$
-
-
 $$
   \mathbf{KSpace_2}: \ \ \ y_r + jy_i = w_r + jw_i + (cos(\phi_2) + jsin(\phi_2))(f_r + jf_i)\\
 $$
-
 <br/>
 
 It is noted that since the magnetic properties of fat and water are known, $\phi_1$ and $\phi_2$ are known; thus, the cosine and sine of each may be computed:
