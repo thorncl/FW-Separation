@@ -1,7 +1,5 @@
 # Fat Water Separation
 
-<font size="6"><b>Introduction</b></font>
-
 In the domain of Magnetic Resonance Imaging (MRI), the accurate separation of fat and water signals is critically important, primarily due to the distinct chemical shifts they exhibit. This distinction is critical as it directly influences image clarity and diagnostic precision.
 
 The overlapping of fat and water signals can lead to substantial image degradation, especially in anatomical regions where both tissue types coexist, such as the abdominal and breast regions.
@@ -13,7 +11,6 @@ In a research context, the ability to differentiate these signals is instrumenta
 In this project, we aim to perform fat/water separation by collecting two complementary EPI sequences while assuming that we're spinning in the water's rotating frame of reference.
 
 <font size="6"><b>Libraries</b></font>
-
 
 ```python
 import numpy as np
