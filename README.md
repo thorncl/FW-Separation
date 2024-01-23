@@ -254,22 +254,22 @@ Thus, the set of linear equations may be written in matrix format per the follow
 <br/>
 $$
   \begin{bmatrix}
-  x_r \\
-  x_i \\
-  y_r \\
+  x_r \\\
+  x_i \\\
+  y_r \\\
   y_i
   \end{bmatrix}
   =
   \begin{bmatrix}
-  1 & 0 & a & -c \\
-  0 & 1 & c & a \\
-  1 & 0 & b & -d \\
+  1 & 0 & a & -c \\\
+  0 & 1 & c & a \\\
+  1 & 0 & b & -d \\\
   0 & 1 & d & b
   \end{bmatrix}
   \begin{bmatrix}
-  w_r \\
-  w_i \\
-  f_r \\
+  w_r \\\
+  w_i \\\
+  f_r \\\
   f_i
   \end{bmatrix}
 $$
