@@ -12,6 +12,17 @@ The repository also contains methods for generating k-space data via Echo Planar
 
 `sample_sim.py` includes a sample experiment in which a uniformly distributed row-dependent delay has been applied to the image in the spatial frequency domain. The original image is then subsequently reconstructed from the corrupted data.
 
+For instance, suppose eddy currents and system delays cause deviations in our target trajectory through k-space. We may assume some random, uniformly distributed delay throughout k-space, i.e.:
+
+```python
+delays = 0.05*np.random.uniform(-0.8, 0.8, (256,1))
+```
+The delay may be applied to the k-space data by generating a `params` object and passing the `params` object as input to the `kspace_data` dataclass:
+
+```python
+kspace = kspace_data(params(1, 2, 128, delays, 2, True))
+```
+
 
 
 # Fat-Water Separation
