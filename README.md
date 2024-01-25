@@ -4,6 +4,8 @@ This repository explores a post-processing technique used in Magnetic Resonance 
 
 The repository also contains methods for generating k-space data via Echo Planar Imaging for single tissue voxels, and the means by which a sample image may be recovered from a corrupted image, with some delay induced in the spatial frequency domain.
 
+# Echo Planar Imaging Simulator and Experimentation
+
 `kspace.py` contains the dataclass `params` which returns an object containing the paramters used to conduct the EPI experiment. The `params` object takes the following as input:
 
 - `scaling_factor` - A float used to scale the magnitude of the signal.
