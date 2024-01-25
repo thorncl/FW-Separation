@@ -40,6 +40,17 @@ The reconstruction may then be performed:
 reconstructed_image = reconstruct.reconstruct(kspace)
 ```
 
+The real and imaginary components of the corrupted image are shown below:
+
+![png](images/corrupted_image.png)
+
+Through application of the methodology defined herein, the real and imaginary components of the corrected image are shown below:
+
+![png](images/corrected_image.png)
+
+
+
+
 
 # Fat-Water Separation
 
