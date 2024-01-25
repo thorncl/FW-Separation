@@ -14,7 +14,6 @@ The repository also contains methods for generating k-space data via Echo Planar
 
 
 
-
 # Fat-Water Separation
 
 In the domain of Magnetic Resonance Imaging (MRI), the accurate separation of fat and water signals is critically important, primarily due to the distinct chemical shifts they exhibit. This distinction is critical as it directly influences image clarity and diagnostic precision.
