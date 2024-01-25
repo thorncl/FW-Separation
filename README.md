@@ -1,4 +1,16 @@
-# Fat Water Separation
+# Preface
+
+This repository explores a post-processing chemical separation technique used in Magnetic Resonance Imaging. Fat-Water Separation for Diffusion-Weighted Echo Planar Imaging (DW-EPI) is carried-out in the notebook below.
+
+The repository also contains methods for generating k-space data via Echo Planar Imaging, and the means by which a sample image may be recovered from a corrupted image, with some delay induced in the spatial frequency domain.
+
+
+
+
+
+
+
+# Fat-Water Separation
 
 In the domain of Magnetic Resonance Imaging (MRI), the accurate separation of fat and water signals is critically important, primarily due to the distinct chemical shifts they exhibit. This distinction is critical as it directly influences image clarity and diagnostic precision.
 
@@ -412,6 +424,3 @@ Furthermore, there are numerous image artifacts that may be induced via EPI. For
 Additionally, magnetic susceptibility differences between various tissues may induce some additional gradient during imaging resulting in geometric distortion. 
 
 These considerations are important in the context of real-world imaging; however, they are not accounted for in this study.
-
-
-## Echo Planar Imaging Simulator
