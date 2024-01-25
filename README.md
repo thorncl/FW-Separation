@@ -4,7 +4,18 @@ This repository explores a post-processing chemical separation technique used in
 
 The repository also contains methods for generating k-space data via Echo Planar Imaging, and the means by which a sample image may be recovered from a corrupted image, with some delay induced in the spatial frequency domain.
 
-`kspace.py` contains the dataclass `params` which returns an object containing the paramters used to conduct the EPI experiment. An additional dataclass `kspace_data` takes a `params` object as input, and contains methods used to produce k-space data with some random or constant row-dependent delay, and some helper functions to save, load, and plot the k-space data.
+`kspace.py` contains the dataclass `params` which returns an object containing the paramters used to conduct the EPI experiment. The `params` object takes the following as input:
+
+- `scaling_factor` - A float used to scale the magnitude of the signal.
+- `voxel_width_factor` - A float used to scale the width of the width of the signal.
+- `pixel_offset` - Used to shift the signal by a specified number of pixels.
+- `delay` - A float or numpy array containing the delay factors.
+- `modulo` - If a constant delay is chosen, this is used to the alternate the direction of the delay every `x` number of rows as specified by `modulo`.
+- `row_dependent` - A boolean used to determine if the applied delay changes as a function of the trajectory through k-space (default = False).
+- `image_size` - An integer used to determine the pixel size of the image (i.e. 256 for a 256x256 image).
+
+
+An additional dataclass `kspace_data` takes a `params` object as input, and contains methods used to produce k-space data with some random or constant row-dependent delay, and some helper functions to save, load, and plot the k-space data.
 
 `reconstruct.py` contains the dataclass `reconstruct` that takes a `kspace_data` object as input, and contains methods used to remove the delay from the corrupted signal.
 
