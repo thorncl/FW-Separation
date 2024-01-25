@@ -4,8 +4,13 @@ This repository explores a post-processing chemical separation technique used in
 
 The repository also contains methods for generating k-space data via Echo Planar Imaging, and the means by which a sample image may be recovered from a corrupted image, with some delay induced in the spatial frequency domain.
 
+`kspace.py` contains the dataclass `params` which returns an object containing the paramters used to conduct the EPI experiment. An additional dataclass `kspace_data` takes a `params` object as input, and contains methods used to produce k-space data with some random or constant row-dependent delay, and some helper functions to save, load, and plot the k-space data.
 
+`reconstruct.py` contains the dataclass `reconstruct` that takes a `kspace_data` object as input, and contains methods used to remove the delay from the corrupted signal.
 
+`transforms.py` contains functions to perform forward and inverse 1D and 2D fast fourier transforms.
+
+`sample_sim.py` includes a sample experiment in which a uniformly distributed row-dependent delay has been applied to the image in the spatial frequency domain. The original image is then subsequently reconstructed from the corrupted data.
 
 
 
