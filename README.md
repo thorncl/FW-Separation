@@ -20,6 +20,7 @@ delays = 0.05*np.random.uniform(-0.8, 0.8, (256,1))
 The delay may be applied to the k-space data by generating a `params` object and passing the `params` object as input to the `kspace_data` dataclass:
 
 ```python
+# params(scaling_factor, voxel_width_factor, pixel_offset, delay, modulo, row_dependent, image_size = 256)
 kspace = kspace_data(params(1, 2, 128, delays, 2, True))
 ```
 
