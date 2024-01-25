@@ -465,4 +465,4 @@ Additionally, magnetic susceptibility differences between various tissues may in
 
 These considerations are important in the context of real-world imaging; however, they are not accounted for in this study.
 
-Other techniques may leverage deep convolutional neural networks or generative adversarial networks (GANs) with attention mechanisms for robust fat-water separation (Basty et al., 2023).
+Other techniques may leverage deep convolutional neural networks or generative adversarial networks (GANs) with attention mechanisms for robust fat-water separation (Basty et al., 2023); however, such methods are not suitable for use in the context of simple voxel reconstruction.
