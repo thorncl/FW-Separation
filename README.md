@@ -1,6 +1,6 @@
 # Preface
 
-This repository explores a post-processing technique used in Magnetic Resonance Imaging. Fat-Water Separation for Diffusion-Weighted Echo-Planar Imaging (DW-EPI) (or chemical-shift encoded MRI) is carried-out in the notebook below.
+This repository explores a post-processing technique used in Magnetic Resonance Imaging. Fat-Water Separation for T2-Weighted Echo-Planar Imaging (DW-EPI) (or chemical-shift encoded MRI) is carried-out in the notebook below.
 
 The repository also contains methods for generating k-space data via Echo-Planar Imaging for single tissue voxels, and the means by which a sample image may be recovered from a corrupted image, with some delay induced in the spatial frequency domain.
 
